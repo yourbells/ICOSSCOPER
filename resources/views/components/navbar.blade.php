@@ -15,6 +15,9 @@
                     <a class="nav-link {{ request()->routeIs('registration') ? 'active' : '' }}" href="/registration">Registration</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('login') ? 'active' : '' }}" href="login">Login</a>
+                </li>
+                {{-- <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('term') ? 'active' : '' }}" href="/term-and-condition">Term & Condition</a>
                 </li>
                 <li class="nav-item">
@@ -25,7 +28,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('gallery') ? 'active' : '' }}" href="/gallery">Gallery</a>
-                </li>
+                </li> --}}
             </ul>
             <div class="search-box">
                 <input type="text" placeholder="Search...">

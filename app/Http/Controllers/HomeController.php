@@ -14,19 +14,23 @@ class HomeController extends Controller
         return view('registration');
     }
 
-    public function term(){
-        return view('term');
+    public function login(){
+        return view('auth.login');
     }
 
-    public function previous(){
-        return view('previous');
-    }
+    // public function term(){
+    //     return view('term');
+    // }
 
-    public function template(){
-        return view('template');
-    }
+    // public function previous(){
+    //     return view('previous');
+    // }
 
-    public function gallery(){
-        return view('gallery');
-    }
+    // public function template(){
+    //     return view('template');
+    // }
+
+    // public function gallery(){
+    //     return view('gallery');
+    // }
 }

@@ -9,40 +9,93 @@
         <table class="conference-table">
             <thead>
                 <tr>
-                    <th>Participant / Delegates</th>
+                    <th>Registration Fee</th>
                     <th>Early Bid</th>
-                    <th>Normal Rate</th>
+                    <th>Reguler</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Presenter (Single)</td>
-                    <td>USD 260</td>
-                    <td>USD 300</td>
+                    <td>Participant</td>
+                    <td>Rp. 50.000</td>
+                    <td>Rp. 75.000</td>
                 </tr>
                 <tr>
-                    <td>Extra One Paper</td>
-                    <td>USD 260</td>
-                    <td>USD 300</td>
+                    <td colspan="3">Presenter</td>
                 </tr>
                 <tr>
-                    <td>Student</td>
-                    <td>USD 260</td>
-                    <td>USD 300</td>
+                    <td><li>Undergraduate</li></td>
+                    <td>Rp. 250.000</td>
+                    <td>Rp. 350.000</td>
+                </tr>
+                <tr>
+                    <td><li>Postgraduate</li></td>
+                    <td>Rp. 250.000</td>
+                    <td>Rp. 350.000</td>
+                </tr>
+                <tr>
+                    <td><li>Lecturer</li></td>
+                    <td>Rp. 450.000</td>
+                    <td>Rp. 550.000</td>
+                </tr>
+                <tr>
+                    <td><li>Public</li></td>
+                    <td>Rp. 650.000</td>
+                    <td>Rp. 800.000</td>
+                </tr>
+                <tr>
+                    <td><li>International</li></td>
+                    <td>$ 55</td>
+                    <td>$ 65</td>
                 </tr>
             </tbody>
         </table>
     </div>
     <div class="payment">
         <h3>Payment</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur ipsum cupiditate, quia fugiat repudiandae nulla repellendus nam ipsam illo ratione voluptatem inventore beatae dolore nisi. Ratione magni accusantium nisi repudiandae?</p>
-
+        <p>BNI | 7088708851 | RPL 004 BLU Unimed</p>
     </div>
     <div class="submission">
-        <h1>Submission</h1>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit blanditiis, at incidunt debitis cupiditate eveniet! Adipisci, unde quam eaque numquam consequatur ipsam aperiam deserunt voluptate doloribus repudiandae modi neque nemo? lor
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse magni magnam dolorem, unde delectus nostrum dignissimos sequi eveniet? Suscipit unde quos illo eligendi voluptatibus molestias dolorem eos accusantium repellendus? Dolorem.
-        </p>
+        <h1>Contact Person</h1>
+        <ul>
+            <li> Dr. Surya Kelana Putra, Spd.I, M.Hum., M.Ag.</li>
+            <p>skputra@unimed.ac.id <br> 
+                +62 813 6245 9123</p>
+        </ul>
+        <ul>
+            <li> Muhammad Chairad, S.Pd., M.Pd</li>
+            <p>chairad@unimed.ac.id <br> 
+                +62 813 7522 1087</p>
+        </ul>
     </div>
+    {{-- <form method="POST" action="{{ route('registration') }}">
+        @csrf
+
+        <!-- Name -->
+        <div>
+            <label for="name">Name</label>
+            <input id="name" type="text" name="name" required autofocus>
+        </div>
+
+        <!-- Email Address -->
+        <div>
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" required>
+        </div>
+
+        <!-- Password -->
+        <div>
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" required>
+        </div>
+
+        <!-- Confirm Password -->
+        <div>
+            <label for="password_confirmation">Confirm Password</label>
+            <input id="password_confirmation" type="password" name="password_confirmation" required>
+        </div>
+
+        <button type="submit">Register</button>
+    </form> --}}
 </div>
 @endsection
