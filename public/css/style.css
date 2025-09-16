@@ -1,81 +1,48 @@
-/* Animasi marquee untuk speaker images bergerak ke kiri */
 @keyframes marqueeLeft {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-25%); }
+  100% { transform: translateX(-50%); }
 }
-
-/* Container untuk efek marquee */
 .marquee-container {
   overflow: hidden;
   white-space: nowrap;
   position: relative;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 1rem;
 }
 
 .marquee-content {
   display: inline-flex;
-  animation: marqueeLeft 15s linear infinite;
-  gap: 2rem;
+  animation: marqueeLeft 20s linear infinite;
+  gap: clamp(1rem, 2vw, 2rem); 
+  width: max-content;
 }
 
-/* Animasi fade-in untuk speaker cards */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Animasi fade-in untuk teks */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* Animasi slide-in dari kiri */
 @keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
-/* Animasi slide-in dari kanan */
 @keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
-/* Animasi scale-in */
 @keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
 }
 
-/* Menerapkan animasi ke elemen */
 .animate-fade-in-up {
   animation: fadeInUp 0.6s ease-out forwards;
 }
@@ -96,7 +63,6 @@
   animation: scaleIn 0.6s ease-out forwards;
 }
 
-/* Delay untuk animasi berurutan */
 .delay-100 { animation-delay: 0.1s; }
 .delay-200 { animation-delay: 0.2s; }
 .delay-300 { animation-delay: 0.3s; }
@@ -106,32 +72,31 @@
 .delay-700 { animation-delay: 0.7s; }
 .delay-800 { animation-delay: 0.8s; }
 
-/* Efek hover untuk speaker cards */
 .speaker-card {
-  transition: all 1.5s ease;
+  transition: all 0.8s ease;
   flex-shrink: 0;
-  width: 200px;
-  height: 200px; /* Batas lebar card */
-  margin: 0 10px; /* Spacing antar card */
-}
-
-.speaker-card:hover {
-  transform: translateY(-10px) scale(1.05);
-  filter: brightness(1.1);
+  width: clamp(120px, 20vw, 200px); 
+  margin: 0 clamp(0.25rem, 1vw, 10px);
+  text-align: center;
 }
 
 .speaker-card img {
   transition: all 0.3s ease;
-  width: 160px !important; /* Ukuran gambar lebih kecil */
-  height: 160px !important;
-  object-fit: fill;
+  width: clamp(80px, 15vw, 160px);
+  height: clamp(80px, 15vw, 160px);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.speaker-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  filter: brightness(1.1);
 }
 
 .speaker-card:hover img {
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
-/* Efek hover untuk list items */
 .list-item {
   transition: all 0.2s ease;
 }
@@ -141,12 +106,47 @@
   transform: translateX(5px);
 }
 
-/* State awal untuk animasi (hidden) */
 .animate-fade-in-up,
 .animate-fade-in,
 .animate-slide-in-left,
 .animate-slide-in-right,
-.animate-scale-in 
-{
+.animate-scale-in {
   opacity: 0;
+}
+
+@media (max-width: 480px) {
+  .marquee-content {
+    gap: 1rem; 
+  }
+
+  .speaker-card {
+    width: 120px;
+  }
+
+  .speaker-card img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .speaker-card {
+    width: 150px;
+  }
+
+  .speaker-card img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (min-width: 769px) {
+  .speaker-card {
+    width: 200px;
+  }
+
+  .speaker-card img {
+    width: 160px;
+    height: 160px;
+  }
 }

@@ -1,4 +1,4 @@
-<header class="fixed top-0 left-0 w-full bg-sky-500 text-white shadow z-50">  
+<header class="fixed top-0 left-0 w-full bg-sky-600 text-white shadow z-50">  
   <div class="max-w-6xl mx-auto px-4">
     <div class="flex items-center justify-between h-14">
       <a href="{{ route('home') }}" class="flex items-center gap-2 font-semibold tracking-wide">

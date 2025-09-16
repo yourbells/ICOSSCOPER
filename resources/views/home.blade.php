@@ -14,25 +14,25 @@
 @endphp
 
 <section class="py-8 animate-fade-in">
-  <div class="py-6 marquee-container" style="height: 250px;">
-    <div class="marquee-content">
+  <div class="py-6 marquee-container h-[200px] sm:h-[220px] md:h-[250px] lg:h-[280px]">
+    <div class="marquee-content flex space-x-6">
       @foreach($speakers as $index => $speaker)
         <div class="flex flex-col items-center text-center speaker-card">
           <img src="{{ $speaker['photo'] }}" 
                alt="{{ $speaker['name'] }}" 
-               class="w-40 h-40 rounded-full object-cover" />
-          <p class="mt-4 text-xs text-gray-800 font-medium">
+               class="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-full object-cover transition-transform duration-300 hover:scale-105" />
+          <p class="mt-3 text-[10px] sm:text-xs md:text-sm lg:text-xs text-gray-800 font-medium">
             {{ $speaker['name'] }}
           </p>
         </div>
       @endforeach
-      <!-- Duplikat untuk seamless loop -->
+
       @foreach($speakers as $index => $speaker)
         <div class="flex flex-col items-center text-center speaker-card">
           <img src="{{ $speaker['photo'] }}" 
                alt="{{ $speaker['name'] }}" 
-               class="w-40 h-40 rounded-full object-cover" />
-          <p class="mt-2 text-xs text-gray-800 font-medium">
+               class="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-full object-cover transition-transform duration-300 hover:scale-105" />
+          <p class="mt-3 text-[10px] sm:text-xs md:text-sm lg:text-base text-gray-800 font-medium">
             {{ $speaker['name'] }}
           </p>
         </div>
@@ -41,8 +41,9 @@
   </div>
 </section>
 
+
 <div class="text-center mt-2 animate-scale-in delay-600">
-  <h1 class="text-2xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold leading-snug text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-red-500">
+  <h1 class="text-2xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-snug">
     International Conference of Sport Science Sport Coaching Science and Physical Education and Recreation
   </h1>
 </div>
@@ -61,13 +62,13 @@
   </p>
 </div>
 
-<div class="mt-4 italic text-center text-lg font-semibold text-slate-800 animate-fade-in delay-800 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
+<div class="mt-6 italic text-center sm:text-sm md:text-xl lg:text-2xl font-bold text-slate-800 animate-fade-in delay-800">
   Innovative Approaches to Integrate Sport Science, coaching,<br class="hidden md:block"/>
   physical education, and recreational Sport for a Balance lifestyle.
 </div>
 
 <section class="mt-8 animate-slide-in-left delay-300">
-  <h2 class="text-2xl font-bold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-red-500">
+  <h2 class="text-2xl sm:text-xl md:text-2xl lg:text-3xl font-bold text-center mb-6">
     Aim and Scope</h2>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
     <ul class="list-disc pl-6 space-y-1">
@@ -93,7 +94,7 @@
 
 <section class="flex justify-center mt-10 animate-slide-in-right delay-300">
   <div class="w-full max-w-3xl px-4">
-    <h2 class="text-2xl font-extrabold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-red-500">
+    <h2 class="text-2xl sm:text-2xl md:text-3xl lg:text-3xl font-bold text-center mb-6">
       Dates & Venue Activity
     </h2>
 
@@ -120,17 +121,10 @@
       </ul>
     </div>
 
-    <!-- Venue Section -->
     <div class="mt-10 text-center">
-      <h3 class="mb-8 text-xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-red-500">
+      <h3 class="mb-8 text-2xl sm:text-xl md:text-2xl lg:text-3xl font-bold text-center mb-3">
         Venue Location
       </h3>
-      <!-- <p class="text-gray-600 text-sm mb-6">
-        Auditorium Universitas Negeri Medan (UNIMED),<br>
-        Jl. Willem Iskandar Pasar V, Medan Estate, Sumatera Utara
-      </p> -->
-
-      <!-- Google Maps Modern Card -->
       <div class="relative mx-auto w-full max-w-2xl group">
         <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-red-500 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
         
@@ -144,10 +138,8 @@
             referrerpolicy="no-referrer-when-downgrade">
           </iframe>
 
-          <!-- Footer Map Card -->
           <div class="p-4 flex justify-between items-center bg-white/70 backdrop-blur-md">
             <div class="flex items-center gap-2">
-              <!-- Pin Icon -->
               <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-pink-500" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 2C6.686 2 4 4.686 4 8c0 3.314 6 10 6 10s6-6.686 6-10c0-3.314-2.686-6-6-6zm0 8.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" clip-rule="evenodd"/>
               </svg>
@@ -156,7 +148,7 @@
               </p>
             </div>
             <a href="https://maps.app.goo.gl/wepgLZYbYMapY72v9" target="_blank"
-              class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:scale-105 transition transform shadow-md">
+              class="bg-sky-700 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:scale-105 transition transform shadow-md">
               View Map
             </a>
           </div>
