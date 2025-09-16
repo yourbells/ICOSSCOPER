@@ -46,10 +46,10 @@
                     </td>
                     <td class="px-4 py-2 flex gap-2">
                         @if($user->role !== 'admin')
-                        <form method="POST" action="{{ route('admin.users.destroy', $user->id) }}" onsubmit="return confirm('Delete this user?')">
+                        <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white px-3 py-1 rounded text-xs">Delete</button>
+                            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-2 py-1 rounded">Delete</button>
                         </form>
                         @endif
                     </td>

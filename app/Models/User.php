@@ -68,4 +68,11 @@ class User extends Authenticatable
     {
         return 'uuid';
     }
+    // app/Models/User.php
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
 }

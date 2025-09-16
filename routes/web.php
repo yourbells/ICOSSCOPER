@@ -4,10 +4,17 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FileUploadController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('home');
 })->name('home');
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    // Tambahkan route untuk delete user
+    Route::delete('/users/{user}', [AdminController::class, 'destroyUser'])->name('users.destroy');
+});
 
 // Semua route di bawah ini hanya untuk user yang sudah login
 Route::middleware(['auth'])->group(function () {
@@ -29,12 +36,6 @@ Route::middleware(['auth'])->group(function () {
     
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->name('logout');
-});
-
-// Only for admin
-Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard');
-    Route::delete('/users/{user}', [App\Http\Controllers\AdminController::class, 'destroy'])->name('admin.users.destroy');
 });
 
 require __DIR__.'/auth.php';

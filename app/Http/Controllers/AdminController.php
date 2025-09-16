@@ -2,27 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class AdminController extends Controller
 {
-    public function index()
-    {
-        $users = User::all();
-        return view('admin.dashboard', compact('users'));
-    }
-
-    public function destroy(User $user)
-    {
-        if ($user->role !== 'admin') {
-            $user->delete();
-        }
-        return redirect()->route('admin.dashboard')->with('status', 'User deleted!');
-    }
-    
     public function dashboard()
     {
-        return view('admin.dashboard');
+        // Ambil semua data user
+        $users = User::all();
+
+        // Kirim data ke view
+        return view('admin.dashboard', compact('users'));
+    }
+    
+    public function destroyUser(User $user)
+    {
+        if($user->role === 'admin') {
+            return back()->with('error', 'Cannot delete admin user');
+        }
+        
+        $user->delete();
+        return back()->with('success', 'User deleted successfully');
     }
 }
