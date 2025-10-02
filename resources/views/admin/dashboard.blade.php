@@ -3,6 +3,19 @@
 @section('content')
 <div class="min-h-screen py-8">
     <h1 class="text-3xl font-bold mb-6 text-sky-700">Admin Dashboard</h1>
+    
+    @if(session('success'))
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <div class="overflow-x-auto bg-white rounded-xl shadow-lg p-6">
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gradient-to-r from-pink-200 to-blue-100">
@@ -32,14 +45,22 @@
                     </td>
                     <td class="px-4 py-2">
                         @if($user->role === 'presenter' && $user->abstract_path)
-                            <a href="{{ asset('uploads/abstracts/'.$user->abstract_path) }}" target="_blank" class="text-sky-600 underline">View</a>
+                            @php
+                                $firebase = app(\App\Services\FirebaseService::class);
+                                $abstractUrl = $firebase->getFileUrl($user->abstract_path);
+                            @endphp
+                            <a href="{{ $abstractUrl }}" target="_blank" class="text-sky-600 underline hover:text-sky-800">View</a>
                         @else
                             <span class="text-gray-400">-</span>
                         @endif
                     </td>
                     <td class="px-4 py-2">
                         @if($user->role === 'presenter' && $user->fullpaper_path)
-                            <a href="{{ asset('uploads/fullpapers/'.$user->fullpaper_path) }}" target="_blank" class="text-sky-600 underline">View</a>
+                            @php
+                                $firebase = app(\App\Services\FirebaseService::class);
+                                $fullpaperUrl = $firebase->getFileUrl($user->fullpaper_path);
+                            @endphp
+                            <a href="{{ $fullpaperUrl }}" target="_blank" class="text-sky-600 underline hover:text-sky-800">View</a>
                         @else
                             <span class="text-gray-400">-</span>
                         @endif
@@ -49,7 +70,7 @@
                         <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-2 py-1 rounded">Delete</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                         @endif
                     </td>

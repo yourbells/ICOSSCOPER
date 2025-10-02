@@ -3,17 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\FirebaseService;
 
 class FileUploadController extends Controller
 {
-    // Menampilkan dashboard dengan user yang login
+    protected $firebase;
+
+    public function __construct(FirebaseService $firebase)
+    {
+        $this->firebase = $firebase;
+    }
+
+    /**
+     * Menampilkan dashboard dengan user yang login
+     */
     public function index()
     {
         return view('profile.dashboard', ['user' => auth()->user()]);
     }
 
     /**
-     * Upload Abstract
+     * Upload Abstract ke Firebase Storage
      */
     public function storeAbstract(Request $request)
     {
@@ -21,17 +31,33 @@ class FileUploadController extends Controller
             'abstract' => 'required|mimes:pdf,doc,docx|max:2048', // 2 MB max
         ]);
 
-        $fileName = time() . '_abstract.' . $request->file('abstract')->extension();
+        $user = auth()->user();
 
-        // Simpan ke folder /public/uploads/abstracts
-        $request->file('abstract')->move(public_path('uploads/abstracts'), $fileName);
+        // Hapus file lama jika ada
+        if ($user->abstract_path) {
+            $this->firebase->deleteFile($user->abstract_path);
+        }
 
-        return back()->with('success', 'Abstract berhasil diupload!')
-                     ->with('file', 'abstracts/' . $fileName);
+        // Upload file baru ke Firebase Storage
+        $filePath = $this->firebase->uploadFile(
+            $request->file('abstract'),
+            'uploads/abstracts'
+        );
+
+        // Update user data di Firestore
+        $user->abstract_path = $filePath;
+        $user->save();
+
+        // Get file URL
+        $fileUrl = $this->firebase->getFileUrl($filePath);
+
+        return back()
+            ->with('success', 'Abstract berhasil diupload!')
+            ->with('file_url', $fileUrl);
     }
 
     /**
-     * Upload Full Paper
+     * Upload Full Paper ke Firebase Storage
      */
     public function storeFullPaper(Request $request)
     {
@@ -39,12 +65,28 @@ class FileUploadController extends Controller
             'fullpaper' => 'required|mimes:pdf,doc,docx|max:5120', // 5 MB max
         ]);
 
-        $fileName = time() . '_fullpaper.' . $request->file('fullpaper')->extension();
+        $user = auth()->user();
 
-        // Simpan ke folder /public/uploads/fullpapers
-        $request->file('fullpaper')->move(public_path('uploads/fullpapers'), $fileName);
+        // Hapus file lama jika ada
+        if ($user->fullpaper_path) {
+            $this->firebase->deleteFile($user->fullpaper_path);
+        }
 
-        return back()->with('success', 'Full paper berhasil diupload!')
-                     ->with('file', 'fullpapers/' . $fileName);
+        // Upload file baru ke Firebase Storage
+        $filePath = $this->firebase->uploadFile(
+            $request->file('fullpaper'),
+            'uploads/fullpapers'
+        );
+
+        // Update user data di Firestore
+        $user->fullpaper_path = $filePath;
+        $user->save();
+
+        // Get file URL
+        $fileUrl = $this->firebase->getFileUrl($filePath);
+
+        return back()
+            ->with('success', 'Full paper berhasil diupload!')
+            ->with('file_url', $fileUrl);
     }
 }
